@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>详情</title>
+		<script src="javascripts/jquery-1.6.2.min.js" type="text/javascript"></script> 
+	</head>
+	<body>
+		<input type="text" placeholder="sssss" class="alz"/>
+		<input type="button" value="搜索" class="b1" />
+		
+		
+		
+		
+		<div class="so">
+			
+		</div>
+		
+	</body>
+	
+	<script>
+	
+			$.ajax({
+				type:"get",
+				url:"http://localhost:3234/list/list",
+				data:{
+					"start":0,
+					"alla":0
+				},
+				success:function(data){
+					console.log(data);
+					var html='';
+					for(var i = 0; i < data.length; i++){
+						html+='<div><td><input value="'+data[i].password+'"></input></td><td><input value="'+data[i].username+'"></input></td><td><input value="'+data[i].content+'"></input></td><a href="xiugai.html?id='+data[i].id+'">链接</a></div>'
+
+					}
+				$('.so').append(html);
+				},
+				error:function(){
+					alert("必须错")
+				}
+			})
+	
+		$(".b1").click(function(){
+				$.ajax({
+					type:"get",
+					url:"http://localhost:3234/list/search",
+					data:{
+						title:$(".alz").val()
+					},
+					success:function(e){
+						console.log(e);
+						var h="";
+						for(var i = 0; i < e[0].length; i++){
+							h+='<div><td><input value="'+e[i].comment+'"></input></td><td><input value="'+e[i].content+'"></input></td><td><input value="'+e[i].love+'"></input></td><td><input value="'+e[i].title+'"></input></div>'
+						}
+					$('.so').append(h);
+						
+					}
+				})
+			})
+	
+	
+	
+	
+	
+	
+		
+	</script>
+	
+</html>

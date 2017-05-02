@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="javascripts/jquery-1.6.2.min.js" type="text/javascript"></script> 
+		<style>
+			.ao3{
+				width:200px;
+				height:40px;
+				border:0;
+				background:red;
+				font-size:15px;
+				color:#fff;
+				transition:.5s;
+				cursor: pointer;
+				border-radius:5px;
+			}
+			.ao3:hover{
+				background:yellow;
+				color:#000;
+			}
+		</style>
+	</head>
+	<body>
+		title：<input type="text" placeholder="title" class="ao"/><br /><br />
+		content：<input type="text" placeholder="content" class="ao1"/><br /><br />
+		点击发布：<input type="button" value="点击发布" class="ao3"/><br /><br />
+	</body>
+	
+	<script>
+		$(".ao3").click(function(){
+				var ss = $('.ao').val();
+				var ss1 = $('.ao1').val();
+				
+				
+				alert(1);
+					$.ajax({
+						url:"http://localhost:3234/release/release",
+						type:"post",
+						data:{
+							"title":ss,
+							"content":ss1,
+							"start":0,
+							"alla":0
+						},
+						success:function(e){
+							alert("成功");
+						},error:function(){
+							alert("失败");
+						}
+					})
+				
+				})
+
+				
+		
+		
+	</script>
+</html>

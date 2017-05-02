@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="javascripts/jquery-1.6.2.min.js" type="text/javascript"></script> 
+	</head>
+	<style>
+			.aol{
+				width:200px;
+				height:40px;
+				border:0;
+				background:red;
+				font-size:15px;
+				color:#fff;
+				transition:.5s;
+				cursor: pointer;
+				border-radius:5px;
+			}
+			.aol:hover{
+				background:yellow;
+				color:#000;
+			}
+		</style>
+	</head>
+	<body>
+		
+		用户名：<input type="text" placeholder="用户名" class="ao"/><br /><br />
+		密&nbsp&nbsp&nbsp码：<input type="text" placeholder="密码" class="ao1"/><br /><br />
+		手机号：<input type="text" placeholder="手机" class="ao2"/><br /><br />
+		邮&nbsp&nbsp&nbsp箱：<input type="text" placeholder="邮箱" class="ao3"/><br /><br />
+		昵&nbsp&nbsp&nbsp称：<input type="text" placeholder="昵称" class="ao4"/><br /><br />
+		
+		
+		点击注册：<input type="button" value="点击注册" class="aol"/><br /><br />
+		
+		<script>
+			
+			
+			
+			$(".aol").click(function(){			
+				
+							$.ajax({
+								url:"http://localhost:3234/user/zhuce",
+								type:"post",
+								data:{
+									"username":$('.ao').val(),
+									"password":$('.ao1').val(),
+									"tel":$('.ao2').val(),
+									"email":$('.ao3').val(),
+									"nick":$('.ao4').val(),
+									"start":0
+								},
+								success:function(e){
+									if(e.flag == 1){
+										alert("成功");
+									}else if(e.flag == 2){
+										alert("用户名被占用");
+									}else if(e.flag == 3){
+										alert("失败");
+									}
+								},error:function(e){
+									console.log(e);
+									alert("必须失败");
+								}
+							})
+						
+					})
+				
+				
+
+		</script>
+		
+		
+		
+		
+		<!--var fd = new FormData();
+				fd.append("uploadedFile",files);
+				console.log(fd);
+					$.ajax({
+						url:"http://localhost:3234/user/right",
+						type:"post",
+						data:fd,
+          				contentType: false,
+          				processData: false,
+						success:function(e){
+							console.log(e);
+							alert(1);
+							
+						}
+							var files;
+			var setFiles = function(element){
+				console.log(element.files);
+				files=element.files[0];
+			}
+							
+							
+							})-->
+	</body>
+	
+</html>
